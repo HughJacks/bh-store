@@ -51,6 +51,18 @@
 
 	let currentIndex = $state(0);
 	let isAddingToCart = $state(false);
+	let loadedImages = $state<Set<string>>(new Set());
+
+	// Preload all images when component mounts
+	$effect(() => {
+		images.forEach((image: GalleryImageProps) => {
+			const img = new Image();
+			img.onload = () => {
+				loadedImages = new Set([...loadedImages, image.src]);
+			};
+			img.src = image.src;
+		});
+	});
 
 	function nextImage() {
 		currentIndex = (currentIndex + 1) % images.length;
@@ -59,6 +71,8 @@
 	function goToImage(index: number) {
 		currentIndex = index;
 	}
+
+	const isCurrentImageLoaded = $derived(loadedImages.has(images[currentIndex].src));
 
 	async function handleAddToCart() {
 		if (!variantId) {
@@ -114,8 +128,12 @@
         <div class="cursor-pointer" onclick={() => goToImage(index)}>{index === currentIndex ? 'x' : '0'}</div>
     {/each}
 </div>
-<div class="col-span-6 md:col-span-8 cursor-e-resize h-72 md:h-144  overflow-hidden" onclick={nextImage}>
-    <img src={images[currentIndex].src} alt={images[currentIndex].alt} class="w-full h-full object-cover rounded-sm aspect-square md:aspect-auto" />
+<div class="col-span-6 md:col-span-8 cursor-e-resize h-72 md:h-144 overflow-hidden rounded-sm" onclick={nextImage}>
+    {#if isCurrentImageLoaded}
+        <img src={images[currentIndex].src} alt={images[currentIndex].alt} class="w-full h-full object-cover aspect-square md:aspect-auto" />
+    {:else}
+        <div class="w-full h-full bg-gray-200 rounded-sm"></div>
+    {/if}
 </div>
 
 </div>
