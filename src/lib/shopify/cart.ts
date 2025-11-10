@@ -26,6 +26,14 @@ const CART_FRAGMENT = `
 						product {
 							title
 							handle
+							images(first: 1) {
+								edges {
+									node {
+										url
+										altText
+									}
+								}
+							}
 						}
 						price {
 							amount

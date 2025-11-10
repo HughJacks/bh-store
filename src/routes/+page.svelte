@@ -97,14 +97,16 @@
 
 <div class="col-span-2">
     <button 
-		class="font-sans underline hover:no-underline cursor-pointer disabled:opacity-50 disabled:text-gray-400 disabled:no-underline disabled:cursor-not-allowed"
+		class="font-sans underline hover:no-underline cursor-pointer  disabled:no-underline disabled:cursor-not-allowed"
 		onclick={handleAddToCart}
 		disabled={isAddingToCart || !variantId || isOutOfStock}
 	>
 		{isOutOfStock ? 'Out of Stock' : isAddingToCart ? 'Adding...' : 'Add to Cart'}
 	</button>
 
+	{#if !isOutOfStock}
     <p class="font-sans">{price}</p>
+	{/if}
 </div>
 
 <div class="col-span-1 text-right flex flex-col gap-1">

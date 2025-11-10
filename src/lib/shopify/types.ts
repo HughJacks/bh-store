@@ -60,6 +60,14 @@ export interface ShopifyCart {
 					product: {
 						title: string;
 						handle: string;
+						images?: {
+							edges: Array<{
+								node: {
+									url: string;
+									altText: string | null;
+								};
+							}>;
+						};
 					};
 					price: {
 						amount: string;

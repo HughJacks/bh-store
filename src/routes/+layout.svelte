@@ -27,70 +27,90 @@
 				Cart ({cartStore.itemCount})
 			</h1>
 		</div>
-		<div class="w-full ">
-			{@render children()}
-		</div>
-
-	<!-- Cart Drawer -->
-	{#if cartOpen}
-		<div class="fixed inset-0 bg-black/30 z-40" onclick={() => cartOpen = false}></div>
-		<div class="fixed right-0 top-0 h-full w-full max-w-md bg-white z-50 p-8 overflow-y-auto shadow-2xl">
-				<div class="flex justify-between items-start mb-8">
-					<h2 class="text-sm italic">Cart ({cartStore.itemCount})</h2>
-					<button 
-						class="font-sans underline hover:no-underline"
-						onclick={() => cartOpen = false}
-					>
-						Close
-					</button>
-				</div>
-
+		{#if cartOpen}
+			<!-- Cart View -->
+			<div class="w-full max-w-7xl min-h-[calc(100vh-20rem)]">
 				{#if cartStore.cart && cartStore.cart.lines.edges.length > 0}
-					<div class="space-y-6 mb-8">
-						{#each cartStore.cart.lines.edges as { node: line }}
-							<div class="font-sans text-xs">
-								<div class="grid grid-cols-4 gap-4">
-									<div class="col-span-2">
-										<p class="font-semibold">{line.merchandise.product.title}</p>
-										<p class="text-gray-600">{line.merchandise.title !== 'Default Title' ? line.merchandise.title : ''}</p>
-									</div>
-									<div class="text-center">
-										<p>Qty: {line.quantity}</p>
-									</div>
-									<div class="text-right">
-										<p>${(parseFloat(line.merchandise.price.amount) * line.quantity).toFixed(2)}</p>
-									</div>
-								</div>
-								<button
-									class="mt-2 text-xs underline hover:no-underline text-gray-600"
-									onclick={() => cartStore.removeFromCart(line.id)}
-								>
-									Remove
-								</button>
+					{#each cartStore.cart.lines.edges as { node: line }}
+						<div class="grid grid-cols-11 gap-8 pb-8 h-36">
+							<div class="col-span-1 text-right italic text-sm">
+								<span>
+									<button 
+										class="cursor-pointer hover:opacity-50 inline mr-1 underline hover:no-underline"
+										onclick={() => cartStore.removeFromCart(line.id)}
+									>
+										X
+									</button>
+									<span class="inline">{line.merchandise.product.title}</span>
+								</span>
+								{#if line.merchandise.title !== 'Default Title'}
+									<p class="">{line.merchandise.title}</p>
+								{/if}
 							</div>
-						{/each}
-					</div>
+							<div class="col-span-2">
+								<p class="font-sans"></p>
+							</div>
+													
+							<div class="col-span-2">
+								<p class="font-sans">Quantity: {line.quantity}</p>
+							</div>
+							
 
-					<div class="border-t pt-6 mb-8">
-						<div class="flex justify-between font-sans text-xs mb-2">
-							<span>Subtotal</span>
-							<span>${parseFloat(cartStore.cart.cost.subtotalAmount.amount).toFixed(2)}</span>
+
+							<div class="col-span-2">
+								<p class="font-sans"></p>
+							</div>
+							<div class="col-span-2">
+								{#if line.merchandise.product.images?.edges?.[0]?.node.url}
+									<img 
+										src={line.merchandise.product.images.edges[0].node.url} 
+										alt={line.merchandise.product.title}
+										class="w-full h-auto object-cover"
+									/>
+								{/if}
+							</div>
+							<div class="col-span-2">
+								<p class="font-sans">${(parseFloat(line.merchandise.price.amount) * line.quantity).toFixed(2)}</p>
+							</div>
 						</div>
-						<div class="flex justify-between font-sans text-sm font-semibold">
-							<span>Total</span>
-							<span>${parseFloat(cartStore.cart.cost.totalAmount.amount).toFixed(2)}</span>
+					{/each}
+					
+					<div class="grid grid-cols-11 gap-8 pb-8 border-t pt-8">
+						<div class="col-span-1"></div>
+						<div class="col-span-6"></div>
+						<div class="col-span-2">
+							<p class="font-sans">Subtotal</p>
+							<p class="font-sans font-semibold">Total</p>
+						</div>
+						<div class="col-span-2">
+							<p class="font-sans">${parseFloat(cartStore.cart.cost.subtotalAmount.amount).toFixed(2)}</p>
+							<p class="font-sans font-semibold">${parseFloat(cartStore.cart.cost.totalAmount.amount).toFixed(2)}</p>
 						</div>
 					</div>
-
-					<button 
-						class="w-full bg-black text-white py-3 font-sans text-sm hover:bg-gray-800 transition-colors"
-						onclick={() => cartStore.openCheckout()}
-					>
-						Checkout
-					</button>
+					
+					<div class="grid grid-cols-11 gap-8 pb-8">
+						<div class="col-span-9"></div>
+						<div class="col-span-2">
+							<button 
+								class="font-sans underline hover:no-underline cursor-pointer"
+								onclick={() => cartStore.openCheckout()}
+							>
+								Checkout
+							</button>
+						</div>
+					</div>
 				{:else}
-					<p class="font-sans text-sm text-gray-600">Your cart is empty</p>
+					<div class="grid grid-cols-11 gap-8 pb-8">
+						<div class="col-span-1"></div>
+						<div class="col-span-2">
+							<p class="font-sans">Your cart is empty</p>
+						</div>
+					</div>
 				{/if}
+			</div>
+		{:else}
+			<div class="w-full ">
+				{@render children()}
 			</div>
 		{/if}
 
