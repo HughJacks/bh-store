@@ -77,27 +77,27 @@
 	}
 </script>
 
-<div class="w-full grid grid-cols-11 gap-8 pb-8">
+<div class="w-full grid grid-cols-7 md:grid-cols-11 gap-4 md:gap-8 pb-8">
     <div class="col-span-1 text-right text-sm italic">
 
 	<h1 class=" pb-4" >Trough</h1>
 </div>
-<div class="col-span-2">
+<div class="col-span-3 md:col-span-2">
     <p class="font-sans " >A shelf designed to hold and display large format design books.</p>
 </div>
 
-<div class="col-span-4 columns-2 gap-8">
+<div class="col-span-4 columns-2 gap-8 hidden md:block">
     <p class="font-sans " >Two pieces of birch join via hardware at a 90 degree angle and intersect with two planes of stainless steel in a friction fit, creating a low to the ground, sturdy, and beautiful display shelf. The current lead time is 4-6 weeks</p>
 </div>
 
-<div class="col-span-2">
+<div class="col-span-2 hidden md:block">
     <p class="font-sans " >60" x 18" x 18"</p>
     <p class="font-sans " >12.2lbs</p>
 </div>
 
-<div class="col-span-2">
+<div class="col-span-3 md:col-span-2 text-left">
     <button 
-		class="font-sans underline hover:no-underline cursor-pointer  disabled:no-underline disabled:cursor-not-allowed"
+		class="font-sans underline hover:no-underline cursor-pointer  disabled:no-underline disabled:cursor-not-allowed text-left"
 		onclick={handleAddToCart}
 		disabled={isAddingToCart || !variantId || isOutOfStock}
 	>
@@ -114,8 +114,8 @@
         <div class="cursor-pointer" onclick={() => goToImage(index)}>{index === currentIndex ? 'x' : '0'}</div>
     {/each}
 </div>
-<div class="col-span-8 cursor-e-resize h-144  overflow-hidden" onclick={nextImage}>
-    <img src={images[currentIndex].src} alt={images[currentIndex].alt} class="w-full h-full object-cover rounded-sm" />
+<div class="col-span-6 md:col-span-8 cursor-e-resize h-72 md:h-144  overflow-hidden" onclick={nextImage}>
+    <img src={images[currentIndex].src} alt={images[currentIndex].alt} class="w-full h-full object-cover rounded-sm aspect-square md:aspect-auto" />
 </div>
 
 </div>
