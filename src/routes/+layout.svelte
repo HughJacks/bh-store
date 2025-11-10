@@ -18,7 +18,7 @@
 		<div class="h-72 grid grid-cols-7 md:grid-cols-11 flex-row gap-4 md:gap-8">
 			<h1 class="text-sm italic col-span-1 text-right " onclick={() => goto('/')}>Tectonic</h1>
 			<div class="hidden md:block md:col-span-6 "></div>
-			<p class="font-sans tracking-tightest leading-tight col-span-3 ">A small studio, based in Detroit, whose work focuses on creating unique and functional products.</p>
+			<p class="font-sans tracking-tightest leading-tight col-span-3 md:col-span-2 ">A small studio, based in Detroit, whose work focuses on creating unique and functional products.</p>
 
 			<h1 
 				class="underline cursor-pointer hover:no-underline font-sans col-span-2"
@@ -135,7 +135,7 @@
 
 			</div>
 			<div class="col-span-2 hidden md:block "></div>
-			<p class="font-sans  tracking-tightest leading-tight col-span-3 hidden md:block ">A small studio, based in Detroit, whose work focuses on creating unique and functional products.</p>
+			<p class="font-sans  tracking-tightest leading-tight col-span-3 md:col-span-2 hidden md:block ">A small studio, based in Detroit, whose work focuses on creating unique and functional products.</p>
 
 			<h1 class="font-sans col-span-2">Tectonic llc copyright 2025</h1>
 		</div>
