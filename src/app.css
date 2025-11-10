@@ -1,0 +1,39 @@
+@import 'tailwindcss';
+
+@font-face {
+	font-family: 'Adobe Garamond Pro';
+	src: url('/fonts/AGaramondPro-Regular.otf') format('opentype');
+	font-style: normal;
+	font-weight: 400;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Adobe Garamond Pro';
+	src: url('/fonts/AGaramondPro-Italic.otf') format('opentype');
+	font-style: italic;
+	font-weight: 400;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Adobe Garamond Pro';
+	src: url('/fonts/AGaramondPro-Bold.otf') format('opentype');
+	font-style: normal;
+	font-weight: 700;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Adobe Garamond Pro';
+	src: url('/fonts/AGaramondPro-BoldItalic.otf') format('opentype');
+	font-style: italic;
+	font-weight: 700;
+	font-display: swap;
+}
+
+@layer base {
+	body {
+		font-family: 'Adobe Garamond Pro', ui-serif, Georgia, Cambria, 'Times New Roman', serif;
+	}
+}
