@@ -15,7 +15,7 @@
 </svelte:head>
 
 <div class=" text-xs min-h-screen w-full max-w-7xl mx-auto  flex flex-col gap-4 p-2 md:p-5 tracking-tightest leading-tight ">
-		<div class="h-72 grid grid-cols-7 md:grid-cols-11 flex-row gap-4 md:gap-8">
+		<div class="h-32 md:h-72 grid grid-cols-7 md:grid-cols-11 flex-row gap-4 md:gap-8">
 			<h1 class="text-sm italic col-span-1 text-right " onclick={() => goto('/')}>Tectonic</h1>
 			<div class="hidden md:block md:col-span-6 "></div>
 			<p class="font-sans tracking-tightest leading-tight col-span-3 md:col-span-2 ">A small studio, based in Detroit, whose work focuses on creating unique and functional products.</p>
