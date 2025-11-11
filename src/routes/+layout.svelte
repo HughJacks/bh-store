@@ -102,7 +102,7 @@
 					</div>
 				</div>
 			{:else}
-				<div class="grid grid-cols-5 md:grid-cols-11 gap-4 md:gap-8 pb-8">
+				<div class="grid grid-cols-7 md:grid-cols-11 gap-4 md:gap-8 pb-8">
 					<div class="col-span-1"></div>
 					<div class="col-span-2">
 						<p class="font-sans">Your cart is empty</p>
